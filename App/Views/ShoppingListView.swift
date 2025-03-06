@@ -52,8 +52,16 @@ struct ShoppingListView: View {
         var aggregated: [String: Ingredient] = [:]
 
         for ingredient in ingredients {
-            if aggregated[ingredient.nom] != nil {
-                aggregated[ingredient.nom]!.quantite += ingredient.quantite
+            if let existing = aggregated[ingredient.nom] {
+                aggregated[ingredient.nom] = Ingredient(
+                    id: existing.id,
+                    nom: existing.nom,
+                    unite: existing.unite,
+                    categorie: existing.categorie, // Ajout de la catégorie
+                    recette_id: existing.recette_id, // Ajout du recette_id
+                    quantite: existing.quantite + ingredient.quantite, // Ajout des quantités
+                    optionnel: existing.optionnel // Ajout du booléen optionnel
+                )
             } else {
                 aggregated[ingredient.nom] = ingredient
             }
