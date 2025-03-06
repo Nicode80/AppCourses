@@ -1,0 +1,28 @@
+# Ignorer les fichiers et dossiers générés automatiquement
+DerivedData/
+xcuserdata/
+*.xcworkspace/
+*.xcodeproj/project.xcworkspace/
+*.xcodeproj/xcuserdata/
+*.xcodeproj/xcshareddata/
+
+# Ignorer les fichiers binaires
+*.DS_Store
+*.swp
+*.lock
+
+# Ignorer les dépendances Swift Package Manager
+/.build/
+/Packages/
+/Package.resolved
+
+# Ignorer les fichiers spécifiques à Xcode
+*.pbxuser
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+*.xcuserstate
+
+# Ignorer le fichier d'environnement personnel
+.env
+
