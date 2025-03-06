@@ -52,11 +52,12 @@ struct ShoppingListView: View {
         var aggregated: [String: Ingredient] = [:]
 
         for ingredient in ingredients {
-            if let existing = aggregated[ingredient.nom] {
-                aggregated[ingredient.nom]?.quantite += ingredient.quantite
+            if aggregated[ingredient.nom] != nil {
+                aggregated[ingredient.nom]!.quantite += ingredient.quantite
             } else {
                 aggregated[ingredient.nom] = ingredient
             }
+
         }
         return Array(aggregated.values)
     }
