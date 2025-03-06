@@ -1,0 +1,26 @@
+name: AppCourses
+
+options:
+  bundleIdPrefix: com.nicolas
+  deploymentTarget:
+    iOS: "16.0"
+
+settings:
+  base:
+    SWIFT_VERSION: "5.0"
+    GENERATE_INFOPLIST_FILE: YES
+    CURRENT_PROJECT_VERSION: 1   # Version interne pour le build
+    CFBundleShortVersionString: "1.0"   # Version publique de l'application
+
+targets:
+  AppCourses:
+    type: application
+    platform: iOS
+    sources: [App]
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: YES
+        INFOPLIST_OTHER_PREPROCESSOR_FLAGS: "-traditional"
+        MARKETING_VERSION: "1.0.0" # Ajoute un numéro de version
+        CURRENT_PROJECT_VERSION: "1" # Ajoute un numéro de build
+
