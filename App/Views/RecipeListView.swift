@@ -4,6 +4,7 @@ struct RecipeListView: View {
     @ObservedObject var recipeVM = RecipeViewModel()
     @State private var selectedRecipes: [Recipe] = []
     @State private var navigateToShoppingList = false
+    @State private var showAddRecipeView = false // ✅ État pour afficher l'ajout de recette
 
     var body: some View {
         NavigationStack {
@@ -42,7 +43,6 @@ struct RecipeListView: View {
                 }
                 .padding()
                 .disabled(selectedRecipes.isEmpty)
-
             }
             .navigationTitle("🍽️ Sélectionnez des recettes")
             .onAppear {
@@ -55,6 +55,22 @@ struct RecipeListView: View {
             .navigationDestination(for: Recipe.self) { recipe in
                 RecipeDetailView(recipe: recipe)
             }
+            .sheet(isPresented: $showAddRecipeView) { // ✅ Afficher la vue d'ajout de recette
+                AddRecipeView(recipeVM: recipeVM) // ✅ On passe le ViewModel
+            }
+            .overlay(
+                Button(action: {
+                    showAddRecipeView = true
+                }) {
+                    Image(systemName: "plus.circle.fill")
+                        .resizable()
+                        .frame(width: 60, height: 60)
+                        .foregroundColor(.blue)
+                        .shadow(radius: 4)
+                }
+                .padding()
+                .position(x: UIScreen.main.bounds.width - 50, y: UIScreen.main.bounds.height - 150) // ✅ Position en bas à droite
+            )
         }
     }
 
